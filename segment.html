@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <title>Fingerprint Inspection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+<script>
+    // REMOVED FROM THE INIT SCRIPT BECAUSE IT IS LOADED BELOW BOTTOM OF THE PAGE BUT IT IS THE SAME SCRIPT var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n
+
+    !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){};analytics._writeKey="rWAfVSHRrcvxG0UH4vv3aFZ2dIPmv08c";;analytics.SNIPPET_VERSION="5.2.0";
+    analytics.load("rWAfVSHRrcvxG0UH4vv3aFZ2dIPmv08c");
+    analytics.page();
+    }}();
+  </script>
+</head>
+<body>
+    <div  class="p-8">
+    <h1 class="text-4xl font-bold py-8">Segment Event Tester</h1>
+
+    <div class="mt-2"> 
+        <span class="font-bold">Collector Override</span>
+    <input class="w-54 border-2 p-2" id="collector" value="api.segment.io/v1" />
+<br/>
+   <small>Note: The analytics.js is just a regular analytics JS but I replaced the api.segment.io to be the value of whatever is on the Select above, so it is easier to test.</small>
+</div>
+
+
+<div class="grid grid-cols-2 mt-8">
+ 
+
+    <div>
+        <div class="grid grid-cols-12">
+            <div class="col-span-3">
+                <button
+                class=" w-44 px-4 py-2 flex hover:bg-green-700 text-base font-medium
+                rounded-md text-white 
+                bg-green-500" onClick="analytics.page();">analytics.page()</button>
+            </div>
+            <div class="col-span-9">
+                See <a class="underline text-blue-500" href="https://segment.com/docs/connections/spec/page/" target="_blank">Segment Page Spec</a>. Look at the Network tab and look for call.
+
+            </div>
+        </div>
+    </div>
+    <div>
+     <!-- TODO DEBUG WINDOW -->
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    const selectElement = document.getElementById('collector');
+
+    // Function to load the modified analytics.js with the selected endpoint
+    function loadAnalyticsWithEndpoint(endpoint) {
+      fetch('analytics.js')
+        .then(response => response.text())
+        .then(data => {
+          const replacedData = data.replace('%%SEGMENT_ENDPOINT%%', endpoint);
+          eval(replacedData);
+          // Initialize Segment Analytics here if necessary
+        });
+    }
+
+    // Initial load
+    loadAnalyticsWithEndpoint(selectElement.value);
+
+    // Listen for changes on the select element to reload the analytics script
+    selectElement.addEventListener('change', function() {
+      const selectedEndpoint = this.value;
+      loadAnalyticsWithEndpoint(selectedEndpoint);
+    });
+  });
+</script>
+</body>
+</html>

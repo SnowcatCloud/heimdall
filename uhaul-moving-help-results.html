@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>UID Redirect Form</title>
+     <script type="text/javascript" async="1">
+        // Snowplow JS SDK 
+        // You replace line 34 with your hosted file, do NOT
+        // LOAD FROM CDN as it poses a security risk.
+        // Then Adjust line 41 to your collector sp.uhaul.com
+        // Load the Tracker V3
+    
+        (function (p, l, o, w, i, n, g) {
+          if (!p[i]) {
+            p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+            p.GlobalSnowplowNamespace.push(i);
+            p[i] = function () {
+              (p[i].q = p[i].q || []).push(arguments);
+            };
+            p[i].q = p[i].q || [];
+            n = l.createElement(o);
+            g = l.getElementsByTagName(o)[0];
+            n.async = 1;
+            n.src = w;
+            g.parentNode.insertBefore(n, g);
+          }
+        })(
+          window,
+          document,
+          "script",
+          "//cdn.jsdelivr.net/npm/@snowplow/javascript-tracker@3.4.0/dist/sp.min.js", // Needs to be hosted uhaul.com with random name hufy4.js
+          "snowplow"
+        );
+      
+        // Initialization
+        window.snowplow("newTracker", "sp", "dev.snowcatcloud.com", {  //  sp.uhaul.com Your collector
+          appId: "uhaul",
+          discoverRootDomain: true,
+          cookieSameSite: "Lax", // Recommended
+          contexts: {
+            webPage: true, // default, can be omitted
+          },
+        });
+
+        // OPTIONAL
+        window.snowplow("setUserId","UNIQUEUSERIDNONPII"); // Add to the value the NON PII (no email, no phone).
+
+        </script> 
+
+</head>
+<body class="p-8">
+
+<link rel="stylesheet" href="https://www.uhaul.com/Misc/MvcContent/Css/ThemeFluid/foundation-sites/uhaulFluid.min.css?3c2373e7=1935608053" />
+<link rel="stylesheet" href="https://www.uhaul.com/Misc/MvcContent/Css/Projects/movinghelp.min.css?3c2373e7=865434399" />
+
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-3 border-orange-500 border-2 bg-orange-100 p-4 my-2" >
+    <form id="MovingHelpSearch" action="https://www.uhaul.com/MovingHelp/San-Diego-CA-92037/1/Results/" method="post">
+
+    <h3 class="font-bold">Sort and Filter</h3>
+
+    <div class="mt-2">
+        <span class="text-sm">Sort Results By</span>
+        <select name="SortOption" id="SortOption" class="block w-72 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+            <option selected="selected" value="0">Overall performance</option>
+            <option value="2">Lowest price</option>
+            <option value="4">A-Z Provider List</option>
+            <option value="5">Z-A Provider List</option>
+        </select>
+      </div>
+
+<hr class="my-6 border-green-500"/>
+
+
+<div class="mt-2">
+  <span class="text-sm">Date</span>
+  <input type="text" id="LocationDate" name="LocationDate"
+  placeholder="02/22/2024" class="p-2 block w-72 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+
+
+<span class="text-sm">Time</span>
+<select id="PreferredTime" name="PreferredTime" class="flex w-72 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+    <option>Morning</option>
+    <option>Afternoon</option>
+    <option>Evening</option>
+  </select>
+</div>
+
+  <hr class="my-6 border-green-500"/>
+
+
+  <div class="mt-2">
+    <span class="text-sm">Number of Crew</span>
+    <select id="CrewCount" name="CrewCount"
+    placeholder="02/22/2024" class="p-2 block w-72 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+    <option selected="selected" value="2">2 Helpers</option>
+    <option value="3">3 Helpers</option>
+    <option value="4">4 Helpers</option>
+    <option value="5">5 Helpers</option>
+    </select>
+  
+    <span class="text-sm">Number of Hours</span>
+    <select id="HourCount" name="HourCount"
+    placeholder="02/22/2024" class="p-2 block w-72 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+    <option selected="selected" value="2">2 Hours</option>
+    <option value="3">3 Hours</option>
+    <option value="4">4 Hours</option>
+    <option value="5">5 Hours</option>
+    <option value="6">6 Hours</option>
+    <option value="7">7 Hours</option>
+    <option value="8">8 Hours</option>
+    <option value="9">9 Hours</option>
+    <option value="10">10 Hours</option>
+    <option value="11">11 Hours</option>
+    <option value="12">12 Hours</option>
+    <option value="13">13 Hours</option>
+    <option value="14">14 Hours</option>
+    <option value="15">15 Hours</option>
+    <option value="16">16 Hours</option>
+    <option value="17">17 Hours</option>
+    <option value="18">18 Hours</option>
+    <option value="19">19 Hours</option>
+    <option value="20">20 Hours</option>
+    <option value="21">21 Hours</option>
+    <option value="22">22 Hours</option>
+    </select>
+  </div>
+  
+  <hr class="my-6 border-green-500"/>
+
+  <div class="mt-2">
+    <span class="text-sm font-bold">Hourly Services</span>
+    <div>
+  <p>
+    <input class="service-types" id="SelectedLoadAndUnload" name="MovingHelpServices[0].Selected" checked="checked" type="checkbox" value="true">
+    <span class="text-sm">Load/Unload</span>
+  </p>
+
+  <p>
+    <input class="service-types" id="SelectedPackAndUnpack" name="MovingHelpServices[1].Selected" type="checkbox" value="true">
+    <span class="text-sm">Pack/Unpack</span>
+  </p>
+
+  <p>
+    <input class="service-types" id="SelectedCleaning" name="MovingHelpServices[2].Selected" type="checkbox" value="true">
+    <span class="text-sm">Cleaning Help/Maid Services</span>
+  </p>
+</div>
+
+
+  </div>
+
+
+
+  <div class="mt-2">
+    <span class="text-sm font-bold">Specialty Services</span>
+    <div>
+  <p>
+    <input class="service-types" id="SelectedPiano" name="MovingHelpServices[3].Selected" type="checkbox" value="true">
+    <span class="text-sm">Piano Fee</span>
+  </p>
+
+  <p>
+    <input class="service-types" id="SelectedSafeMoving" name="MovingHelpServices[4].Selected" type="checkbox" value="true">
+    <span class="text-sm">Gun Safe Fee</span>
+  </p>
+</div>
+
+
+
+
+</div>
+
+
+<div class="mt-2">
+    <span class="text-sm font-bold">Coverage for Eligible Services</span>
+    <div>
+
+  <p>
+    <input id="SafeLoadCoverage" name="SafeLoadCoverage" type="checkbox" value="true">
+    <span class="text-sm">Safeload Coverage Eligible</span>
+  </p>
+</div>
+
+<button class="bg-orange-500 text-white w-full mt-10 py-2 text-lg" type="submit" id="btnApply" data-update-rates="false">Apply</button>
+
+</div>
+</form>
+</div> <!-- END SORT & FILTER COLUMN -->
+
+
+
+<div class="col-span-9 border-blue-500 border-2 bg-blue-100 p-4 my-2">
+  
+  
+<div id="movingHelperResults">
+<ul class="no-bullet" role="list">
+    
+    
+<!-- IMPLEMENTATION INSTUCTIONS; LOOK FOR THE WORD "TRACK" -->
+<!-- FOR EACH LIST ITEM 
+
+data-object_id = nonstopmovers (STRING!!!!)
+data-product_id = PID1284745 (STRING!!!!!)
+data-quantity =  1.0 (FLOAT !!!)
+data-unit = hour (STRING !!!)
+data-price = 63.00 (FLOAT!!!!) 
+data-sort-order = 1 (FLOAT!!!!)
+
+-->
+<li role="listitem" data-object-id="list-item-001" 
+                    data-product-id="nonstopmovers"
+                    data-quantity="1.0"
+                    data-unit="hour"
+                    data-price="63.0"
+                    data-sort-order="1">
+                    
+    <div class="callout flat">
+        
+
+            <div class="grid-x grid-margin-x clear-all">
+            <div class="cell small-6 medium-auto medium-order-2">
+                <h2 >
+                    <a data-open="modal_helper104471" aria-controls="modal_helper104471" aria-haspopup="true" tabindex="0">NonStop movers </a>
+                </h2>
+                
+                <p class="collapse-half">
+                    <a data-open="reviewsModal_104471" data-ajax="/MovingHelp/MovingHelpDetailReviews.aspx/?id=104471&amp;modal=True" class="rating" aria-controls="reviewsModal_104471" aria-haspopup="true" tabindex="0">
+                    <span aria-label="5 out of 5 stars"></span>273 reviews</a>
+                </p>
+        
+                <dl class="collapse show-for-medium">
+                    <dt class="collapse text-lg">
+                        Your Quote Includes:
+                    </dt>
+                    <dd class="collapse text-default">
+                        2 Person Crew, 2 Hours of Help
+                    </dd>
+                    <dd>
+                        <ul class="no-bullet inline collapse-all text-default">
+                                <li>
+                                    Load/Unload
+                                </li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="cell small-6 medium-3 text-right medium-text-left">
+                  
+            <img src="https://www.uhaul.com/MovingHelp/Image/MovingHelperPhotos/?thumb=1&amp;MovingHelperID=104471&amp;width=150&amp;height=150">
+ 
+    
+            </div>
+            <div class="cell small-6 hide-for-medium">
+                        <dl class="collapse hide-for-medium">
+                    <dt class="collapse text-lg">
+                        Your Quote Includes:
+                    </dt>
+                    <dd class="collapse text-default">
+                        2 Person Crew, <br>2 Hours of Help
+                    </dd>
+                    <dd>
+                        <ul class="no-bullet inline collapse-all text-default">
+                                <li>
+                                    Load/Unload
+                                </li>
+                        </ul>
+                    </dd>
+                        </dl>
+    
+            </div>
+            <div class="cell small-6 medium-4 medium-order-2 text-right">
+                <div class="grid-x grid-full">
+                    <div class="cell">
+                        
+                             <dl>
+                                <dt class="show-for-sr">Hourly Rate:</dt>
+                                <dd class="text-bold text-3x medium-text-4x">
+                                    $63.00 
+                                    <sup style="left: -0.25rem">/hr</sup>
+                                </dd>
+                            </dl>
+                    </div>
+                    <div class="cell align-self-bottom">
+
+
+                    <a  
+                    data-object-id="list-item-001-cta-1" 
+                    data-product-id="nonstopmovers"
+                    data-quantity="1.0"
+                    data-unit="hour"
+                    data-price="63.0"
+                    data-sort-order="1"
+                    class="tracked button show-for-medium" href="#" data-action-tag="Helper 1 Clicked">
+            Customize &amp; Book</a>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+           
+    
+        
+        
+    </div>
+</li>  
+
+
+<li role="listitem"                     
+data-object-id="list-item-002" 
+data-product-id="movestomake"
+data-quantity="1.0"
+data-unit="hour"
+data-price="77.50"
+data-sort-order="2">
+                    
+    <div class="callout flat">
+        
+
+            <div class="grid-x grid-margin-x clear-all">
+            <div class="cell small-6 medium-auto medium-order-2">
+                <h2 >
+                    <a data-open="modal_helper104471" aria-controls="modal_helper104471" aria-haspopup="true" tabindex="0">Moves to Make </a>
+                </h2>
+                
+                <p class="collapse-half">
+                    <a data-open="reviewsModal_104471" data-ajax="/MovingHelp/MovingHelpDetailReviews.aspx/?id=104471&amp;modal=True" class="rating" aria-controls="reviewsModal_104471" aria-haspopup="true" tabindex="0">
+                    <span aria-label="5 out of 5 stars"></span>273 reviews</a>
+                </p>
+        
+                <dl class="collapse show-for-medium">
+                    <dt class="collapse text-lg">
+                        Your Quote Includes:
+                    </dt>
+                    <dd class="collapse text-default">
+                        2 Person Crew, 2 Hours of Help
+                    </dd>
+                    <dd>
+                        <ul class="no-bullet inline collapse-all text-default">
+                                <li>
+                                    Load/Unload
+                                </li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="cell small-6 medium-3 text-right medium-text-left">
+                  
+            <img src="https://www.uhaul.com/MovingHelp/Image/MovingHelperPhotos/?thumb=1&MovingHelperID=107132&width=150&height=150">
+ 
+    
+            </div>
+            <div class="cell small-6 hide-for-medium">
+                        <dl class="collapse hide-for-medium">
+                    <dt class="collapse text-lg">
+                        Your Quote Includes:
+                    </dt>
+                    <dd class="collapse text-default">
+                        2 Person Crew, <br>2 Hours of Help
+                    </dd>
+                    <dd>
+                        <ul class="no-bullet inline collapse-all text-default">
+                                <li>
+                                    Load/Unload
+                                </li>
+                        </ul>
+                    </dd>
+                        </dl>
+    
+            </div>
+            <div class="cell small-6 medium-4 medium-order-2 text-right">
+                <div class="grid-x grid-full">
+                    <div class="cell">
+                        
+                             <dl>
+                                <dt class="show-for-sr">Hourly Rate:</dt>
+                                <dd class="text-bold text-3x medium-text-4x">
+                                    $77.50
+                                    <sup style="left: -0.25rem">/hr</sup>
+                                </dd>
+                            </dl>
+                    </div>
+                    <div class="cell align-self-bottom">
+
+
+                    <a  
+                    data-object-id="list-item-002-cta-2href-varb" 
+                    data-product-id="movestomake"
+                    data-quantity="1.0"
+                    data-unit="hour"
+                    data-price="77.50"
+                    data-sort-order="2"
+                    class="tracked button show-for-medium" href="#" data-action-tag="Helper 1 Clicked">
+            Customize &amp; Book</a>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+           
+    
+        
+        
+    </div>
+</li>  
+
+</ul>
+      
+    
+    
+                <ul id="resultsPager" class="pagination text-right">
+                    <li class="pagination-previous">
+                        <button type="submit" name="currentPage" value="0" class="disabled">
+                            <span class="show-for-sr">Previous Page</span>                        
+                            
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="10.3" height="10.3" viewBox="0 0 10.3 10.3" role="img" aria-label="Left arrow icon" class="">
+        <g>
+            <path d="M9.6,2.6c.5,.8,.7,1.6,.7,2.6s-.2,1.8-.7,2.6-1.1,1.4-1.9,1.9c-.8,.5-1.6,.7-2.6,.7s-1.8-.2-2.6-.7c-.8-.5-1.4-1.1-1.9-1.9-.5-.8-.7-1.6-.7-2.6s.2-1.8,.7-2.6c.5-.8,1.1-1.4,1.9-1.9,.8-.5,1.6-.7,2.6-.7s1.8,.2,2.6,.7c.8,.5,1.4,1.1,1.9,1.9Zm-1,3v-.9c0-.1,0-.2-.1-.3s-.2-.1-.3-.1h-3.4l1.3-1.3c0,0,.1-.2,.1-.3s0-.2-.1-.3l-.6-.6c0,0-.2-.1-.3-.1s-.2,0-.3,.1l-2.4,2.4-.6,.6c0,0-.1,.2-.1,.3s0,.2,.1,.3l.6,.6,2.4,2.4c0,0,.2,.1,.3,.1s.2,0,.3-.1l.6-.6c0,0,.1-.2,.1-.3s0-.2-.1-.3l-1.3-1.3h3.4c.1,0,.2,0,.3-.1s.1-.2,.1-.3Z"></path>
+        </g>
+    </svg>
+                        </button>
+                    </li>
+                        <li>
+                            <button type="submit" name="currentPage" value="1" class="current" aria-label="Page 1">
+                                    <span class="show-for-sr">You're on page 1</span>
+                                1
+                            </button>
+                        </li>
+                        <li>
+                            <button type="submit" name="currentPage" value="2" class="" aria-label="Page 2">
+                                2
+                            </button>
+                        </li>
+                        <li>
+                            <button type="submit" name="currentPage" value="3" class="" aria-label="Page 3">
+                                3
+                            </button>
+                        </li>
+                        <li>
+                            <button type="submit" name="currentPage" value="4" class="" aria-label="Page 4">
+                                4
+                            </button>
+                        </li>
+                        <li>
+                            <button type="submit" name="currentPage" value="5" class="" aria-label="Page 5">
+                                5
+                            </button>
+                        </li>
+                        <li>
+                            <button type="submit" name="currentPage" value="6" class="" aria-label="Page 6">
+                                6
+                            </button>
+                        </li>
+                    <li class="pagination-next">
+                        <button type="submit" name="currentPage" value="2" class="">
+                            <span class="show-for-sr">Next Page</span>
+                            
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="10.3" height="10.3" viewBox="0 0 10.3 10.3" role="img" aria-label="Right arrow icon" class="" style="">
+        <g>
+            <path d="M9.6,2.6c.5,.8,.7,1.6,.7,2.6s-.2,1.8-.7,2.6c-.5,.8-1.1,1.4-1.9,1.9-.8,.5-1.6,.7-2.6,.7s-1.8-.2-2.6-.7c-.8-.5-1.4-1.1-1.9-1.9-.5-.8-.7-1.6-.7-2.6s.2-1.8,.7-2.6c.5-.8,1.1-1.4,1.9-1.9,.8-.5,1.6-.7,2.6-.7s1.8,.2,2.6,.7c.8,.5,1.4,1.1,1.9,1.9Zm-1,2.6c0-.1,0-.2-.1-.3l-.6-.6L5.5,1.8c0,0-.2-.1-.3-.1s-.2,0-.3,.1l-.6,.6c0,0-.1,.2-.1,.3s0,.2,.1,.3l1.3,1.3H2.1c-.1,0-.2,0-.3,.1,0,0-.1,.2-.1,.3v.9c0,.1,0,.2,.1,.3,0,0,.2,.1,.3,.1h3.4l-1.3,1.3c0,0-.1,.2-.1,.3s0,.2,.1,.3l.6,.6c0,0,.2,.1,.3,.1s.2,0,.3-.1l2.4-2.4,.6-.6c0,0,.1-.2,.1-.3Z"></path>
+        </g>
+    </svg>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+             
+ </div>
+</div> <!-- END RESULTS COLUMN -->
+</div>
+
+
+
+<script>
+/////////////////////////////////////////////////////////////////////////
+// SEARCH RESULTS RECORDER! 
+/////////////////////////////////////////////////////////////////////////
+    document.addEventListener("DOMContentLoaded", function() {
+    const items = []; // Array to hold your objects
+    const listItems = document.querySelectorAll('li[role="listitem"]'); // Selects all <li> with role="listitem"
+
+    listItems.forEach(function(item) {
+        // Extract data attributes from each list item
+        let obj = {};
+
+        if (item.hasAttribute('data-object-id')) {
+            obj.object_id = item.getAttribute('data-object-id').toString();
+        }
+
+        if (item.hasAttribute('data-product-id')) {
+            obj.product_id = item.getAttribute('data-product-id').toString();
+        }
+
+        if (item.hasAttribute('data-quantity')) {
+            obj.quantity = parseFloat(item.getAttribute('data-quantity'));
+        }
+
+        if (item.hasAttribute('data-unit')) {
+            obj.unit = item.getAttribute('data-unit').toString();
+        }
+
+        if (item.hasAttribute('data-price')) {
+            obj.price = parseFloat(item.getAttribute('data-price'));
+        }
+
+        if (item.hasAttribute('data-sort-order')) {
+            obj.sort_order = parseFloat(item.getAttribute('data-sort-order'));
+        }        
+        // Add the object to the items array
+        items.push(obj);
+    });
+
+    var context = [
+        {
+            schema: "iglu:com.uhaul/quote/jsonschema/1-0-0",
+                data: {
+                "quotes": items // Array of objects
+            }
+        }]
+    window.snowplow("trackPageView", { context });
+ 
+    console.log("===== TRACK QUOTE RESULTS INSIDE THE PAGEVIEW ======")
+    console.log("Payload:", JSON.stringify(items, null, 2));
+
+    // Here, you would typically do something with the `items` array, like sending it to a server or logging it
+    //console.log(items);
+    // For example, to send this data somewhere or to use it in some way on your page
+});
+</script>
+
+<script>
+
+// Click event listener for the Search Result Page
+// We Track Quotes! DO NOT REUSE THIS SCRIPT AS IS!
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Listen for all click events on the document
+    document.addEventListener('click', function(event) {
+        // Check if the clicked element or any of its parents have the `data-product-id` attribute
+        let item = event.target.closest('[data-object-id]');
+        
+        if (item) {
+            // Extract the product ID
+            let obj = {};
+
+            if (item.hasAttribute('data-object-id')) {
+                obj.object_id = item.getAttribute('data-object-id').toString();
+            }
+
+            if (item.hasAttribute('data-product-id')) {
+                obj.product_id = item.getAttribute('data-product-id').toString();
+            }
+
+            if (item.hasAttribute('data-quantity')) {
+                obj.quantity = parseFloat(item.getAttribute('data-quantity'));
+            }
+
+            if (item.hasAttribute('data-unit')) {
+                obj.unit = item.getAttribute('data-unit').toString();
+            }
+
+            if (item.hasAttribute('data-price')) {
+                obj.price = parseFloat(item.getAttribute('data-price'));
+            }
+
+            if (item.hasAttribute('data-sort-order')) {
+                obj.sort_order = parseFloat(item.getAttribute('data-sort-order'));
+            }    
+
+          // Log the Snowplow event
+          window.snowplow('trackStructEvent', {
+                    category: "ux",
+                    action: "click",
+                    context: [            // Contexts: Array of Self Describing JSONs
+                            {
+                                schema: "iglu:com.uhaul/quote/jsonschema/1-0-0", // Replace with your custom schema
+                                data: {
+                                    "quotes": [obj]
+                                }
+                            }
+                    ] 
+                }   
+            );  
+
+            // Send a structured event to Snowplow
+            //window.snowplow('trackStructEvent', eventData.category, eventData.action, eventData.label, eventData.property, eventData.value);
+            
+            console.log("===== TRACK QUOTE CLICK ======")
+            console.log("Payload:", JSON.stringify(obj, null, 2));
+
+        }
+    });
+});
+
+
+</script>
+
+
+
+<script>
+/////////////////////////////////////////////////////////////////////////
+// SEARCH / FILTER FORM LISTENER 
+/////////////////////////////////////////////////////////////////////////
+//
+// Form event listener for the https://www.uhaul.com/MovingHelp/ page.
+// It listens to submits on the form and records all the variables
+// in the form in a Snowplow event.
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  function handleFormSubmit(event) {
+    
+    event.preventDefault(); // Prevent the default form submission behavior !!! ATTENTION YOU HAVE TO SUBMIT PROGRAMMATICALLY AFTER OR COMMENT THIS OUT!
+
+    const form = event.target;
+    const elements = form.elements;
+    const items = [];
+    const processedRadios = {};
+
+    // Iterate over form elements
+    for (const element of elements) {
+      // Skip if element doesn't have a name attribute or if it's a radio/checkbox that's not checked
+      if (!element.name || (element.type === 'radio' || element.type === 'checkbox' && !element.checked)) continue;
+
+      // For radio buttons, mark as processed to avoid duplicates
+      if (element.type === 'radio') {
+        if (processedRadios[element.name]) continue; // Skip if this radio group has been processed
+        processedRadios[element.name] = true; // Mark this radio group as processed
+      }
+
+      // Determine the type of the element, special handling for select elements
+      let elementType = element?.type || 'unknown';  // Default to 'unknown' if type is not defined
+      if (element.tagName.toLowerCase() === 'select') {
+            elementType = element.multiple ? 'select-multiple' : 'select-one';
+      }
+
+      // Create an object for each form element
+      const obj = {
+        name: element?.name || '',
+        id: element?.id || '', // Some elements might not have an ID
+        element_tag: element?.tagName?.toLowerCase() || 'unknown',
+        element_type: elementType  || '',
+        value: element?.value || '',
+      };
+
+      // Add the object to the items array
+      items.push(obj);
+    }
+    // Log the Snowplow event
+    window.snowplow('trackStructEvent', {
+            category: "ux",
+            action: "filter",
+            context: [            // Contexts: Array of Self Describing JSONs
+                    {
+                        schema: "iglu:com.uhaul/search/jsonschema/1-0-0", // Replace with your custom schema
+                        data: {
+                            "action": "filter",
+                            "fields": items // Array of objects
+                        }
+                    }
+            ] 
+        }  
+    );
+   
+
+    // Log the payload, replace this with your event firing logic
+    console.log("===== TRACK FILTER ======")
+    console.log("Payload:", JSON.stringify(items, null, 2));
+
+    // Delay the form submission by 200ms ! Remove if you dont want delay
+    // Alternative to log this info is to fire the event on the SearchProcessor on the server-side.
+    // If you remove the timeout some events will be missed because there will be no time to fire them
+    // before the form is submitted.
+   
+        /* REMOVE FOR PROD
+        setTimeout(() => {
+            form.removeEventListener('submit', handleFormSubmit); // Temporarily remove the event listener to prevent infinite loop
+            form.submit(); // Submit the form programmatically
+            form.addEventListener('submit', handleFormSubmit); // Reattach the event listener if the form will be used again 
+        }, 1200); // Make it 200ms
+  
+        */
+
+    } // END handleFormSubmit
+
+     // Attach the event listener to the form MovingHelpSearch or Filter
+     const form = document.getElementById('MovingHelpSearch');
+    form.addEventListener('submit', handleFormSubmit);
+
+   
+}); // AddEventListener
+
+
+</script>
+</body>
+</html>

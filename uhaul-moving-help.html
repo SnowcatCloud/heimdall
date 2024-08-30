@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>UID Redirect Form</title>
+     <script type="text/javascript" async="1">
+        // Snowplow JS SDK 
+        // You replace line 34 with your hosted file, do NOT
+        // LOAD FROM CDN as it poses a security risk.
+        // Then Adjust line 41 to your collector sp.uhaul.com
+        // Load the Tracker V3
+    
+        (function (p, l, o, w, i, n, g) {
+          if (!p[i]) {
+            p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+            p.GlobalSnowplowNamespace.push(i);
+            p[i] = function () {
+              (p[i].q = p[i].q || []).push(arguments);
+            };
+            p[i].q = p[i].q || [];
+            n = l.createElement(o);
+            g = l.getElementsByTagName(o)[0];
+            n.async = 1;
+            n.src = w;
+            g.parentNode.insertBefore(n, g);
+          }
+        })(
+          window,
+          document,
+          "script",
+          "//cdn.jsdelivr.net/npm/@snowplow/javascript-tracker@3.4.0/dist/sp.min.js", // Needs to be hosted uhaul.com with random name hufy4.js
+          "snowplow"
+        );
+      
+        // Initialization
+        window.snowplow("newTracker", "sp", "sp.uhaul.com", {  // Your collector
+          appId: "uhaul",
+          discoverRootDomain: true,
+          cookieSameSite: "Lax", // Recommended
+          contexts: {
+            webPage: true, // default, can be omitted
+          },
+        });
+
+        // OPTIONAL
+        window.snowplow("setUserId","UNIQUEUSERIDNONPII"); // Add to the value the NON PII (no email, no phone).
+
+        </script> 
+
+</head>
+<body class="p-8">
+
+<form id="MovingHelpSearch" action="httpsL//www.uhaul.com/MovingHelp/MovingHelpSearch" method="post">
+
+<div class="border-green-500 border-2 bg-green-100 p-4 my-2">
+<h2 class="text-2xl pb-4">Select the help you need:</h2>
+<div class="grid grid-cols-4  gap-8">
+    <div> 
+        Loading
+        <input id="loadingService" name="ServiceNeeded" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+    </div>
+
+    <div> 
+        Unloading
+        <input id="unloadingService" name="ServiceNeeded" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+    </div>
+
+    <div> 
+        Both
+        <input id="both" name="ServiceNeeded" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+    </div>
+
+</div>
+</div>
+
+<div class="border-blue-500 border-2 bg-blue-100 p-4">
+    <div class="grid grid-cols-4 gap-8 pb-6">
+        <div> 
+            <div class="sm:col-span-2 sm:col-start-1">
+                <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Loading Address</label>
+                <div class="mt-2">
+                  <input type="text" name="Location1" id="mhLocation1" 
+                  placeholder="Full Service Address" class="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+        </div>
+    
+        <div> 
+            <div class="sm:col-span-2 sm:col-start-1">
+                <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
+                <div class="mt-2">
+                  <input type="text" name="Location1Date" id="Location1Date" 
+                  placeholder="02/22/2024" class="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+        </div>
+    
+        <div> 
+            <div class="sm:col-span-4">
+                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Start Time</label>
+                <div class="mt-2">
+                  <select id="PreferredTime1" name="PreferredTime1" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Evening</option>
+                  </select>
+                </div>
+              </div>
+        </div>
+    
+    </div>
+    
+    <div class="grid grid-cols-4 gap-8">
+        <div> 
+            <div class="sm:col-span-2 sm:col-start-1">
+                <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Loading Address</label>
+                <div class="mt-2">
+                  <input type="text" name="Location2" id="mhLocation2" 
+                  placeholder="Full Service Address" class="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+        </div>
+    
+        <div> 
+            <div class="sm:col-span-2 sm:col-start-1">
+                <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
+                <div class="mt-2">
+                  <input type="text" name="Location2Date" id="Location2Date" 
+                  placeholder="02/22/2024" class="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+              </div>
+
+        </div>
+    
+        <div> 
+            <div class="sm:col-span-4">
+                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Start Time</label>
+                <div class="mt-2">
+                  <select id="PreferredTime2" name="PreferredTime2" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Evening</option>
+                  </select>
+                </div>
+              </div>
+        </div>
+    
+    </div>
+
+</div>
+
+
+<button type="submit" class="mt-6 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Find Moving Help</button>
+</form>
+
+
+
+<script>
+
+// Form event listener for the https://www.uhaul.com/MovingHelp/ page.
+// It listens to submits on the form and records all the variables
+// in the form in a Snowplow event.
+
+document.addEventListener("DOMContentLoaded", function() {
+  function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission behavior !!! ATTENTION YOU HAVE TO SUBMIT PROGRAMMATICALLY AFTER OR COMMENT THIS OUT!
+
+    const form = event.target;
+    const elements = form.elements;
+    const items = [];
+    const processedRadios = {};
+
+    // Iterate over form elements
+    for (const element of elements) {
+        // Skip if element doesn't have a name attribute or if it's a radio/checkbox that's not checked
+        if (!element.name || (element.type === 'radio' || element.type === 'checkbox' && !element.checked)) continue;
+
+      // For radio buttons, mark as processed to avoid duplicates
+      if (element.type === 'radio') {
+        if (processedRadios[element.name]) continue; // Skip if this radio group has been processed
+        processedRadios[element.name] = true; // Mark this radio group as processed
+      }
+
+      // Determine the type of the element, special handling for select elements
+      let elementType = element?.type || 'unknown';  // Default to 'unknown' if type is not defined
+      if (element.tagName.toLowerCase() === 'select') {
+            elementType = element.multiple ? 'select-multiple' : 'select-one';
+      }
+
+      // Create an object for each form element
+      const obj = {
+        name: element?.name || '',
+        id: element?.id || '', // Some elements might not have an ID
+        element_tag: element?.tagName?.toLowerCase() || 'unknown',
+        element_type: elementType  || '',
+        value: element?.value || '',
+      };
+
+      // Add the object to the items array
+      items.push(obj);
+    }
+
+    // Construct the payload
+    var context = [
+        {
+            schema: "iglu:com.uhaul/search/jsonschema/1-0-0",
+                data: {
+                "action": "search",
+                "fields": items // Array of objects
+            }
+        }]
+        
+    // Log the Snowplow event
+    window.snowplow('trackStructEvent', {
+            category: "ux",
+            action: "search",
+            context: [            // Contexts: Array of Self Describing JSONs
+                    {
+                        schema: "iglu:com.uhaul/search/jsonschema/1-0-0", // Replace with your custom schema
+                        data: {
+                            "action": "search",
+                            "fields": items // Array of objects
+                        }
+                    }
+            ] 
+        }  
+    );
+
+    // Log the payload, replace this with your event firing logic
+    // console.log("Payload:", JSON.stringify(context, null, 2));
+
+    // Delay the form submission by 200ms ! Remove if you dont want delay
+    // Alternative to log this info is to fire the event on the SearchProcessor on the server-side.
+    // If you remove the timeout some events will be missed because there will be no time to fire them
+    // before the form is submitted.
+
+    /*
+    setTimeout(() => {
+      form.removeEventListener('submit', handleFormSubmit); // Temporarily remove the event listener to prevent infinite loop
+      form.submit(); // Submit the form programmatically
+      form.addEventListener('submit', handleFormSubmit); // Reattach the event listener if the form will be used again 
+    }, 200);
+    */
+
+    console.log("===== TRACK SEARCH ======")
+    console.log("Payload:", JSON.stringify(items, null, 2));
+
+
+  }
+
+  // Attach the event listener to the form
+  const form = document.getElementById('MovingHelpSearch');
+  form.addEventListener('submit', handleFormSubmit);
+});
+
+
+</script>
+</body>
+</html>

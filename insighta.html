@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>UID Redirect Form</title>
+     <script type="text/javascript" async="1">
+        // Snowplow JS SDK 
+        // You replace line 34 with your hosted file, do NOT
+        // LOAD FROM CDN as it poses a security risk.
+        // Then Adjust line 41 to your collector sp.uhaul.com
+        // Load the Tracker V3
+    
+        (function (p, l, o, w, i, n, g) {
+          if (!p[i]) {
+            p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+            p.GlobalSnowplowNamespace.push(i);
+            p[i] = function () {
+              (p[i].q = p[i].q || []).push(arguments);
+            };
+            p[i].q = p[i].q || [];
+            n = l.createElement(o);
+            g = l.getElementsByTagName(o)[0];
+            n.async = 1;
+            n.src = w;
+            g.parentNode.insertBefore(n, g);
+          }
+        })(
+          window,
+          document,
+          "script",
+          "//cdn.jsdelivr.net/npm/@snowplow/javascript-tracker@3.4.0/dist/sp.min.js", // Needs to be hosted uhaul.com with random name hufy4.js
+          "snowplow"
+        );
+      
+        // Initialization
+        window.snowplow("newTracker", "sp", "dev.snowcatcloud.com", {  // dev.snowcatcloud will be changed to sp.uhaul.com
+          appId: "dev-insighta",
+          discoverRootDomain: true,
+          cookieSameSite: "Lax", // Recommended
+          contexts: {
+            webPage: true, // default, can be omitted
+          },
+        });
+
+        // OPTIONAL
+        window.snowplow("setUserId","UNIQUEUSERIDNONPII"); // Add to the value the NON PII (no email, no phone).
+
+        </script> 
+
+</head>
+<body class="p-8">
+    <div class="border-solid border-2 border-sky-500 bg-sky-100 p-2" 
+            data-id="header" 
+            data-title="My example header"
+            >Header
+
+        <div class="border-solid border-2 border-red-500 bg-red-100 p-2" 
+                data-parentid="header"
+                data-id="navigation"
+                data-title="My example header"
+                >Navigation
+        </div>
+    </div>
+
+    <div class="border-solid border-2 border-green-500 bg-green-100 mt-10 p-2" 
+            data-id="hero" 
+            data-title="Our Hero Image"
+            >Hero
+
+    <div class="border-solid border-2 border-purple-500 bg-purple-100 p-2" 
+            data-parentid="hero"
+            data-id="image" 
+            data-title="Our hero image"
+            >image
+    <br/>
+        <input id="name" 
+            data-id="forminputname" 
+            data-parentid="hero" 
+            data-title="Name input form"
+            placeholder="name input form" />
+    </div>
+
+    <div data-id="cart"  
+         data-parentid="hero"   
+         data-tile="cart"    
+            class="border-solid border-2 border-pink-500 bg-pink-100 p-2" 
+
+            >cart
+    </div>
+
+
+    <a class="bg-orange-300 block w-36" 
+            data-parentid="hero"
+            data-id="Self-Storage" 
+            data-title="Self Storage"
+            data-productid="self-storage"    
+    target="_blank" href="https://www.uhaul.com/storage/">
+
+            <svg class="m-auto w-6 h-6 text-orange-600 mt-8 ml-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" style="enable-background:new 0 0 320 320;" role="img" aria-label="U-Haul Self-Storage Icon">    
+            <path class="fill-white" d="M320.2,12.3c0-5.5-4.5-10-10-10c0,0-300.1,0-299.6,0c-5.5,0-10,4.5-10,10c-0.3,0.3-0.2,78.8-0.1,152.8  c-0.1,68.7-0.1,141.8,0.1,142.1c0,5.5,4.5,10,10,10h32.1h235.4h32.1c5.5,0,10-4.5,10-10c0.3-0.3,0.2-73.3,0.1-142.1  C320.5,91.2,320.5,12.6,320.2,12.3z"></path>
+            <g>
+                <path class="fill-primary" d="M260.6,133.2H59.4c-1.7,0-3.1,1.4-3.1,3.1v13.4c0,1.7,1.4,3.1,3.1,3.1h201.2c1.7,0,3.1-1.4,3.1-3.1v-13.4   C263.7,134.6,262.3,133.2,260.6,133.2z"></path>
+                <path class="fill-primary" d="M260.6,174.3H59.4c-1.7,0-3.1,1.4-3.1,3.1v13.4c0,1.7,1.4,3.1,3.1,3.1h201.2c1.7,0,3.1-1.4,3.1-3.1v-13.4   C263.7,175.6,262.3,174.3,260.6,174.3z"></path>
+                <path class="fill-primary" d="M260.6,92.2H59.4c-1.7,0-3.1,1.4-3.1,3.1v13.4c0,1.7,1.4,3.1,3.1,3.1h201.2c1.7,0,3.1-1.4,3.1-3.1V95.2   C263.7,93.5,262.3,92.2,260.6,92.2z"></path>
+                <path class="fill-primary" d="M260.6,215.3H59.4c-1.7,0-3.1,1.4-3.1,3.1v13.4c0,1.7,1.4,3.1,3.1,3.1h201.2c1.7,0,3.1-1.4,3.1-3.1v-13.4   C263.7,216.7,262.3,215.3,260.6,215.3z"></path>
+                <path class="fill-primary" d="M260.6,256.4H59.4c-1.7,0-3.1,1.4-3.1,3.1v13.4c0,1.7,1.4,3.1,3.1,3.1h201.2c1.7,0,3.1-1.4,3.1-3.1v-13.4   C263.7,257.7,262.3,256.4,260.6,256.4z"></path>
+                <path class="fill-primary" d="M47.1,70.9c-2.4,0-4.4,2-4.4,4.4v241.9H10.6c-5.5,0-10-4.5-10-10c-0.5-0.5,0-261,0-261s-0.1-4.1,4.4-4.1   c-1.1,0,310.8,0,310.8,0c4.4,0,4.4,4.1,4.4,4.1s0.5,260.5,0,261c0,5.5-4.5,10-10,10h-32.1V75.2c0-2.4-2-4.4-4.4-4.4H47.1z"></path>
+                <path class="fill-primary" d="M10.6,2.4c-5.5,0-10,4.5-10,10c-0.5,0.5,0,16,0,16s-0.1,4.1,4.4,4.1c-1.1,0,310.8,0,310.8,0   c4.4,0,4.4-4.1,4.4-4.1s0.5-15.5,0-16c0-5.5-4.5-10-10-10C310.2,2.4,10.1,2.4,10.6,2.4z"></path>
+                <path class="fill-primary" d="M260.6,297.4H59.4c-1.7,0-3.1,1.4-3.1,3.1v13.4c0,1.7,1.4,3.1,3.1,3.1h78.7v-10.4h43.2v10.4h79.3   c1.7,0,3.1-1.4,3.1-3.1v-13.4C263.7,298.8,262.3,297.4,260.6,297.4z"></path>
+            </g>
+            </svg>
+
+        <div class="text-bold">
+            Self Storage HREF EXAMPLE
+        </div>
+    </a>
+
+
+
+
+
+</div>
+
+<script>
+
+// This script is responsible to track the 'view' of all objects tagged
+// with data attributes by looking at DOM as such it should only executed when
+// the DOM is loaded. 
+// You can call it with 
+// var objects = getViewElements();
+
+
+// DOM Load Listener
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        // Get all the elements with data-id attributes
+       // objectItems = getViewObjects();
+
+        // Trigger the Snowplow Event with the schema object
+        // with all the items
+        var context = [
+        {
+            schema: "iglu:io.insighta/user/jsonschema/1-0-0", // Replace with your custom schema
+            data: {
+                "identifiers": [
+                    {
+                        "name":"email",
+                        "value":"joao.correia@snowcatcloud.com"
+                    },
+                    {
+                        "name":"first_name",
+                        "value":"Joao"
+                    },
+                    {
+                        "name":"user_id",
+                        "value":"joaocorreia"
+                    }                                       
+                ]     
+            }
+        }]
+        window.snowplow("trackPageView", { context });
+
+    } catch (error) {
+    // Handle the error as needed
+
+    }
+
+});
+
+// Click event listener 
+document.addEventListener('click', function(event) {
+try {
+
+    let element = event.target;
+    // Check if the clicked element or any of its parents has a data-id attribute
+    while (element && element !== document) {
+        if (element.hasAttribute('data-id')) {
+
+            dataId = element.getAttribute('data-id') // Get the element data-id
+            obj = objectItems.find(element => element.id == dataId); // Search the clicked element data
+            obj.action = "click"; // Set action with click
+
+            // Check if it's a navigation link
+            if (element.tagName === 'A' && element.href) {
+                        event.preventDefault(); // Prevent the default link navigation
+                        href = element.href;    // Save the link
+            }
+
+            //console.log("Delaying following the HREF for 200ms")
+                setTimeout(function() {
+                        window.location.href = href;
+                }, 200);  
+
+            // Log the Snowplow event
+            window.snowplow('trackStructEvent', {
+                    category: "ux",
+                    action: "click",
+                    context: [           
+                            {
+                                schema: "iglu:io.insighta/user/jsonschema/1-0-0", // Replace with your custom schema
+                                data: {
+                                    "identifiers": [
+                                        {
+                                            "name":"email",
+                                            "value":"joao.correia@snowcatcloud.com"
+                                        },
+                                        {
+                                            "name":"first_name",
+                                            "value":"Joao"
+                                        },
+                                        {
+                                            "name":"user_id",
+                                            "value":"joaocorreia"
+                                        }                                       
+                                    ]     
+                               }
+                            }
+                    ] 
+                }   
+            );            
+            
+            //alert('Clicked on element with data-id: ' + element.getAttribute('data-id'));
+            break; // Exit the loop once the element is found
+        }
+        element = element.parentElement;
+    }
+
+} catch (error) {
+// Handle the error as needed
+
+}
+
+});
+
+
+// This function sets all the attributes an element and 
+// should only be called by getViewObjects() 
+function processObject(element, orderCount, globalOrder, action) {
+            try {
+                const parent_id = element.dataset.parentid;
+                const id = element.dataset.id;
+                const title = element.dataset.title;
+                const product_id = element.dataset.productid;
+                const element_tag = element.tagName;
+                const destination = element.href;
+                const value = element.value;
+
+                // Increment order based on parentId or globally
+                if (parent_id) {
+                    orderCount[parent_id] = (orderCount[parent_id] || 0) + 1;
+                } else {
+                    globalOrder++;
+                }
+
+                const order = parent_id ? orderCount[parent_id] : globalOrder;
+
+                return {
+                    parent_id: parent_id || null,
+                    id: id || null,
+                    title: title || null,
+                    product_id: product_id || null,
+                    element_tag: element_tag,
+                    destination: destination || null,
+                    value: value || null,
+                    order: order,
+                    action: action
+                };
+            } catch (error) {
+                // Handle the error as needed
+            }
+        }
+
+// This function gets all the objects with data-id attribute        
+function getViewObjects() {
+    try {
+        const items = [];
+        const orderCount = {}; // Keeps track of order for each parentId
+        let globalOrder = 0; // Keeps track of order for elements without parentId
+
+        // Collect all objects with data-id attribute
+        const elements = document.querySelectorAll('[data-id]');
+        elements.forEach(element => {
+            const item = this.processObject(element, orderCount, globalOrder, "view");
+            if (item) {
+                items.push(item);
+            }
+        });
+
+        return items;
+
+    } catch (error) {
+        // Handle any errors that occur during the function execution
+    }
+}
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UID Redirect Form</title>
+        <script>
+            function redirectToUrl() {
+                var uid = document.getElementById('uidInput').value;
+                window.location.href = 'https://preview.snowcatcloud.com/debug.html?uid=' + encodeURIComponent(uid);
+                return false; // Prevent default form submission
+            }
+        </script>
+    </head>
+    <body>
+        <form onsubmit="return redirectToUrl();">
+            <label for="uidInput">Enter UID:</label>
+            <input type="text" id="uidInput" name="uid">
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

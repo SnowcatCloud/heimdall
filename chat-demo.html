@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>UID Redirect Form</title>
+  
+</head>
+<body class="p-8">
+    <flowise-fullchatbot></flowise-fullchatbot>
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.initFull({
+            chatflowid: "a95eefa7-853c-4861-be34-09dd5d4b1ba2",
+            apiHost: "https://chat.snowcatcloud.com",
+            theme: {
+                chatWindow: {
+                    welcomeMessage: "Hi Welcome to SSIEM 2024 AI bot! How can I help?",
+                    backgroundColor: "#ffffff",
+                    height: "100%",
+                    fontSize: 16,
+                    poweredByTextColor: "#fff",
+                    botMessage: {
+                        backgroundColor: "#f7f8ff",
+                        textColor: "#303235",
+                        showAvatar: true,
+                        avatarSrc: "https://assets-global.website-files.com/648745b6eb46e9d6e98333d1/64dce1c37e4e5e71a5dc027e_SSIEM%202024%20-%20Horizontal-p-500.png",
+                    },
+                    userMessage: {
+                        backgroundColor: "#3B81F6",
+                        textColor: "#ffffff",
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    },
+                    textInput: {
+                        placeholder: "Type your question",
+                        backgroundColor: "#ffffff",
+                        textColor: "#303235",
+                        sendButtonColor: "#3B81F6",
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

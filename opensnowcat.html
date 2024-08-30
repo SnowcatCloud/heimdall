@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Open Snowcat - Snowplow Fork</title>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@opensnowcat">
+    <meta name="twitter:creator" content="@opensnowcat">
+    <meta name="twitter:title" content="Open-source enterprise-grade behavioral data platform.">
+    <meta name="twitter:description" content="OpenSnowcat is an open-source fork of Snowplow following the license changes in 2023 and early 2024. We're looking to sustain an analytics platform for many businesses dependent on the rights granted by the original Apache v2.0 License.">
+    <meta name="twitter:image" content="https://opensnowcat.io/social.png">
+  </head>
+<body>
+
+    <script type="text/javascript" async="1">
+        // Load the Tracker V3
+        (function (p, l, o, w, i, n, g) {
+          if (!p[i]) {
+            p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+            p.GlobalSnowplowNamespace.push(i);
+            p[i] = function () {
+              (p[i].q = p[i].q || []).push(arguments);
+            };
+            p[i].q = p[i].q || [];
+            n = l.createElement(o);
+            g = l.getElementsByTagName(o)[0];
+            n.async = 1;
+            n.src = w;
+            g.parentNode.insertBefore(n, g);
+          }
+        })(
+          window,
+          document,
+          "script",
+          "//cdn.jsdelivr.net/npm/@snowplow/javascript-tracker@3.4.0/dist/sp.min.js",
+          "snowplow"
+        );
+      
+        // Initialization
+        window.snowplow("newTracker", "sp", "sp.snowcatcloud.com", {
+          appId: "opensnowcat",
+          discoverRootDomain: true,
+          cookieSameSite: "Lax", // Recommended
+          contexts: {
+            webPage: true, // default, can be omitted
+          },
+        });
+
+        async function fetchClearbitDataAndTrackPageView() {
+    try {
+        // Replace 'YOUR_PROXY_ENDPOINT' with your server-side proxy endpoint if required
+        const url = 'https://reveal.clearbit.com/v1/companies/reveal?authorization=pk_4fc9215488586db6f882d77553b00e92';
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const clearbitData = await response.json();
+
+        // Assuming Snowplow is already initialized in your application
+        window.snowplow('trackPageView', {
+            context: [{
+                schema: "iglu:com.clearbit/company/jsonschema/1-0-0",
+                data: {
+                    name: clearbitData.company?.name ?? null,
+                    domain: clearbitData.company?.domain ?? null,     
+
+                    "geo.country": clearbitData.company?.geo.country ?? null,
+                  "geo.state": clearbitData.company?.geo.state ?? null,
+                  "geo.city": clearbitData.company?.geo.city ?? null,
+                  tags:
+                    JSON.parse(JSON.stringify(clearbitData.company?.tags)) ??
+                    null,
+                  tech:
+                    JSON.parse(JSON.stringify(clearbitData.company?.tech)) ??
+                    null,
+                  "metrics.annualRevenue":
+                  clearbitData.company?.metrics.annualRevenue ?? null,
+                  "metrics.employees":
+                  clearbitData.company?.metrics.employees ?? null,
+                  industry: clearbitData.company?.category.industry ?? null,
+                  sector: clearbitData.company?.category.sector ?? null,
+                  industryGroup:
+                  clearbitData.company?.category.industryGroup ?? null,
+                  "site.url": clearbitData.company?.domain ?? null,                                    
+                },
+            }]
+        });
+
+    } catch (error) {
+        console.error('Failed to fetch Clearbit data or track page view:', error);
+    }
+}
+
+fetchClearbitDataAndTrackPageView();
+
+      </script>
+
+    <div class="relative bg-gradient-to-b from-indigo-950 to-gray-950 h-full pb-20">
+        <svg class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+          <defs>
+            <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+              <path d="M.5 200V.5H200" fill="none" />
+            </pattern>
+          </defs>
+          <svg x="50%" y="-1" class="overflow-visible fill-gray-800/20">
+            <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z" stroke-width="0" />
+          </svg>
+          <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
+        </svg>
+
+
+        <div class="px-4 md:px-6 md:grid md:grid-cols-2 gap-12 max-w-6xl mx-auto ">
+
+          <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl pt-6 md:pt-10">
+
+            
+            <div class="flex items-center space-x-4">
+                <img src="logo.svg" class="h-6 sm:h-12 md:h-14 lg:h-16">
+                <h2 class="text-3xl lg:text-6xl md:text-5xl font-bold tracking-tight text-rose-600 drop-shadow-md">OpenSnowcat</h2>
+            </div>
+            
+
+
+
+            <h2 class="text-2xl md:text-4xl font-bold tracking-tight text-white pt-4 md:pt-10">Open-Source enterprise-grade behavioral data platform.</h2>
+ 
+            <p class="mt-6 leading-2 text-gray-300">OpenSnowcat is an <span class="text-white font-bold underline underline-offset-4">open-source fork of Snowplow following the license changes in 2023 and early 2024</span>. We're looking to sustain an analytics platform for many businesses dependent on the rights granted by the original Apache v2.0 License.</p>
+
+            <p class="mt-6 align-bottom flex">
+
+                <a href="https://github.com/opensnowcat/" target="_blank" class="flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-2.5 py-1 md:py-2 text-xs md:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+
+                    <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1"  fill="currentColor" data-view-component="true" class="-ml-0.5 h-3 w-3 md:h-4 md:w-4 text-white">
+                        <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                    </svg>
+                    OpenSnowcat
+                </a>
+
+
+                <img src="https://img.shields.io/badge/license-Apache--2-blue.svg?style=flat" class="h-5.5  md:h-6 ml-3 md:ml-6" />
+
+            </p>
+
+            <div>
+                <h2 class="text-4xl font-bold tracking-tight text-white pt-10">Our Goals</h2>
+            <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-400 lg:max-w-none">
+                <div class="relative pl-9">
+                  <dt class="inline font-semibold text-gray-200">
+               
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute left-1 top-1 h-5 w-5 text-indigo-600">
+                        <path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v.756a49.106 49.106 0 0 1 9.152 1 .75.75 0 0 1-.152 1.485h-1.918l2.474 10.124a.75.75 0 0 1-.375.84A6.723 6.723 0 0 1 18.75 18a6.723 6.723 0 0 1-3.181-.795.75.75 0 0 1-.375-.84l2.474-10.124H12.75v13.28c1.293.076 2.534.343 3.697.776a.75.75 0 0 1-.262 1.453h-8.37a.75.75 0 0 1-.262-1.453c1.162-.433 2.404-.7 3.697-.775V6.24H6.332l2.474 10.124a.75.75 0 0 1-.375.84A6.723 6.723 0 0 1 5.25 18a6.723 6.723 0 0 1-3.181-.795.75.75 0 0 1-.375-.84L4.168 6.241H2.25a.75.75 0 0 1-.152-1.485 49.105 49.105 0 0 1 9.152-1V3a.75.75 0 0 1 .75-.75Zm4.878 13.543 1.872-7.662 1.872 7.662h-3.744Zm-9.756 0L5.25 8.131l-1.872 7.662h3.744Z" clip-rule="evenodd" />
+                      </svg>
+
+
+                      
+                    Free and Open-Source Forever
+                  </dt>
+                  <dd class="inline"> - Provide existing and new users with a widely-accepted license that companies can trust and that won't suddenly change in the future. </dd>
+                </div>
+                <div class="relative pl-9">
+                  <dt class="inline font-semibold text-gray-200">
+
+      
+
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute left-1 top-1 h-5 w-5 text-indigo-600">
+                        <path fill-rule="evenodd" d="M15.97 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06l3.22-3.22H7.5a.75.75 0 0 1 0-1.5h11.69l-3.22-3.22a.75.75 0 0 1 0-1.06Zm-7.94 9a.75.75 0 0 1 0 1.06l-3.22 3.22H16.5a.75.75 0 0 1 0 1.5H4.81l3.22 3.22a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+                      </svg>
+
+                      
+                    Integrated & Cost-Efficient
+                  </dt>
+                  <dd class="inline"> - Integrate with cloud services that simplify managing the platform and running cost-efficiently and reliably at scale.</dd>
+                </div>
+                <div class="relative pl-9">
+                  <dt class="inline font-semibold text-gray-200">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute left-1 top-1 h-5 w-5 text-indigo-600">
+                        <path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 0 1 .756 0l2.25 1.313a.75.75 0 0 1-.756 1.295L12 3.118 10.128 4.21a.75.75 0 1 1-.756-1.295l2.25-1.313ZM5.898 5.81a.75.75 0 0 1-.27 1.025l-1.14.665 1.14.665a.75.75 0 1 1-.756 1.295L3.75 8.806v.944a.75.75 0 0 1-1.5 0V7.5a.75.75 0 0 1 .372-.648l2.25-1.312a.75.75 0 0 1 1.026.27Zm12.204 0a.75.75 0 0 1 1.026-.27l2.25 1.312a.75.75 0 0 1 .372.648v2.25a.75.75 0 0 1-1.5 0v-.944l-1.122.654a.75.75 0 1 1-.756-1.295l1.14-.665-1.14-.665a.75.75 0 0 1-.27-1.025Zm-9 5.25a.75.75 0 0 1 1.026-.27L12 11.882l1.872-1.092a.75.75 0 1 1 .756 1.295l-1.878 1.096V15a.75.75 0 0 1-1.5 0v-1.82l-1.878-1.095a.75.75 0 0 1-.27-1.025ZM3 13.5a.75.75 0 0 1 .75.75v1.82l1.878 1.095a.75.75 0 1 1-.756 1.295l-2.25-1.312a.75.75 0 0 1-.372-.648v-2.25A.75.75 0 0 1 3 13.5Zm18 0a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.372.648l-2.25 1.312a.75.75 0 1 1-.756-1.295l1.878-1.096V14.25a.75.75 0 0 1 .75-.75Zm-9 5.25a.75.75 0 0 1 .75.75v.944l1.122-.654a.75.75 0 1 1 .756 1.295l-2.25 1.313a.75.75 0 0 1-.756 0l-2.25-1.313a.75.75 0 1 1 .756-1.295l1.122.654V19.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                      </svg>
+                    Stable, Compatible & Portable
+                  </dt>
+                  <dd class="inline"> - Stable over time, compatible with Snowplow and other SDKs so that existing implementation can continue to drive value and seamless portability from and to Snowplow.</dd>
+                </div>
+              </dl>
+              </div>
+
+
+            <div class="mt-10  items-center gap-x-6">
+
+            <div class="p-6 bg-indigo-900 rounded">
+                <h2 class="text-3xl font-bold tracking-tight text-white">Stay Informed</h2>
+
+                <p class="text-xs text-indigo-300">No spam, OpenSnowcat related updates only. If you would like to get involved in the development / maintenance please reach out to hello@opensnowcat.io</p>
+
+                <form id="myForm">
+
+                <div id="formcontent" style="display:block">
+                <label for="email" class="pt-2 block text-sm font-semibold leading-6 text-white">Email</label>
+                <div class="mt-2">
+
+                  <input id="email_input" name="email" type="email" autocomplete="off" class="rounded-md text-xs md:text-md border-0  w-full px-3.5 py-2 text-indigo-800 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" data-1p-ignore>
+
+
+
+
+                </div>
+                <div class="mt-4 flex justify-end">
+                    <button class="rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Subscribe</button>
+                  </div>
+                  </div>
+
+                  <div id="responseMessage" class="text-white pt-6 font-bold"></div>
+
+              
+ 
+</form>
+
+</div>
+              
+            </div>
+          </div>
+          <div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl text-gray-300 lg:pt-28">
+
+            <h3 class="text-3xl pt-10 text-indigo-400 font-bold">Snowplow is no longer Open-Source</h3>
+
+            <p class="pt-4">On January 8th 2024 Snowplow announced it is changing its core components license to Snowplow Limited Use License Agreement (SLULA).
+            </p>
+            <p class="pt-4"> 
+             Effectively, everyone running Snowplow Open Source in production (we can assume all production is considered highly available) <span class="underline underline-offset-4">who wants to update their core Snowplow components must obtain a license from Snowplow Ltd.</span></p>
+
+            <h3 class="text-3xl pt-10 text-indigo-400 font-bold">Why Snowcat is forking Snowplow</h3>
+            
+
+            <p class="pt-4"><strong class="bg-indigo-800 px-2 py-1">Free and Open</strong> - At Snowcat Cloud, we, like many other businesses, use Snowplow Open Source in production. New and existing Snowplow users should continue to be able to run an up-to-date behavioral event data collection platform with a low operational cost.</p>
+
+            <p class="pt-4"><strong class="bg-indigo-800 px-2 py-1">Increased lock-in</strong> - In the last few years, Snowplow has focused more on locking in users than setting them free (which is understandable). Still, we believe there's a better way: Integrate with existing, cheaper, and ever-evolving cloud services.
+            </p>
+
+
+
+            <h3 class="text-3xl pt-10 text-indigo-400 font-bold">What we've done so far</h3>
+
+            <h4 class="text-2xl pt-4 text-white">AWS EventBridge</h4>
+
+            <p class="pt-2">Event routing is essential to event-driven architectures. We've added support for AWS EventBridge, a serverless event router. The enricher can send data directly to EventBridge, allowing you to route event data cost-effectively and reliably.
+            </p>
+
+            <h4 class="text-2xl pt-4 text-white">JSON Support</h4>
+
+            <p class="pt-2">We've added an enricher option to output JSON to the Kinesis stream (instead of TSV), enabling you to leverage Kinesis Firehose and other services that can consume JSON data.
+            </p>
+
+          </div>
+        </div>
+      </div>
+      <script>
+        function isValidEmail(email) {
+          var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+          return emailRegex.test(email);
+        }
+      
+        document.getElementById('myForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+      
+          var email = document.getElementById('email_input').value;
+          if (!isValidEmail(email)) {
+            document.getElementById('responseMessage').innerText = "Please enter a valid email address!"; 
+            //alert('Please enter a valid email address.');
+            return;
+          }
+      
+          fetch('https://hook.us1.make.com/snt4fbtuajtna4s5ndsifukpcs3et5yo', {
+            method: 'POST',
+            body: new FormData(this)
+            })
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // Use text() instead of json()
+            })
+            .then(data => {
+            document.getElementById('responseMessage').innerText = "Thank you!"; 
+            document.getElementById('formcontent').style.display = 'none';
+
+            })
+            .catch(error => {
+            document.getElementById('responseMessage').innerText = 'Network error: ' + error.message;
+            });
+        });
+      </script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+    <title>Fingerprint Inspection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="rWAfVSHRrcvxG0UH4vv3aFZ2dIPmv08c";;analytics.SNIPPET_VERSION="5.2.0";
+        analytics.load("rWAfVSHRrcvxG0UH4vv3aFZ2dIPmv08c", { 
+            integrations: { 
+                "Segment.io": { 
+                    apiHost: "c.snowcat.io/com.segment/v1" }
+                }
+            }
+        );
+        analytics.page();
+        }}();
+      </script>
+
+
+</head>
+<body>
+    <div class="p-8">
+    <h1 class="text-4xl font-bold py-8">Segment Event Tester</h1>
+    <div class="grid grid-cols-2 mt-8">
+    <div>
+        <p></p>
+
+        <div class="grid grid-cols-12 flex">
+
+            <div class="">
+
+              <button class="mt-6 w-64 px-4 py-2 flex hover:bg-green-700 text-base font-medium rounded-md text-white bg-blue-500" onClick="PageEvent();">
+                Page (com.segment/v1/p)
+              </button>
+
+              <button class="mt-6 w-64 px-4 py-2 flex hover:bg-green-700 text-base font-medium rounded-md text-white bg-blue-500" onClick="TrackEvent();">
+                Track (com.segment/v1/t)
+              </button>
+
+              <button class="mt-6 w-64 px-4 py-2 flex hover:bg-green-700 text-base font-medium rounded-md text-white bg-blue-500" onClick="TrackGroup();">
+                Group (com.segment/v1/g)
+              </button>
+
+              <button class="mt-6 w-64 px-4 py-2 flex hover:bg-green-700 text-base font-medium rounded-md text-white bg-blue-500" onClick="IdentifyEvent();">
+                Identify (com.segment/v1/i)
+              </button>
+              
+              <button class="mt-6 w-64 px-4 py-2 flex hover:bg-green-700 text-base font-medium rounded-md text-white bg-blue-500" onClick="TrackAlias();">
+                Alias (com.segment/v1/a)
+              </button>        
+
+
+            
+              
+            </div>
+           
+        </div>
+    </div>
+    <div>
+     <!-- TODO DEBUG WINDOW https://github.com/opensnowcat/opensnowcat-collector/blob/analyticsjs-bridge/core/src/test/scala/com.snowplowanalytics.snowplow.collectors.scalastream/fixtures/AnalyticsJsFixture.scala -->
+    </div>
+<script>
+  function PageEvent() {
+    analytics.page("Retail Page","Home");
+}
+
+function IdentifyEvent() {
+        analytics.identify("97980cfea0067", {
+    name: "Peter Gibbons",
+    email: "peter@example.com",
+    plan: "premium",
+    logins: 5
+    });
+}
+
+function TrackEvent() {
+    analytics.track("User Registered", {
+  plan: "Pro Annual",
+  accountType: "Facebook"
+});
+}
+
+function TrackGroup() {
+    analytics.group("0e8c78ea9d97a7b8185e8632", {
+  name: "Initech",
+  industry: "Technology",
+  employees: 329,
+  plan: "enterprise",
+  "total billed": 830
+});
+
+}
+
+function TrackAlias() {
+    analytics.alias("1111111","507f191e81");
+
+}
+
+function TrackScreen() {
+  var PageUnstructData =  { event: {
+      schema: "iglu:com.segment/screen/jsonschema/1-0-0",
+      data: 
+      {"anonymousId":"3a12eab0-bca7-11e4-8dfc-aa07a5b093db","channel":"mobile","context":{"ip":"8.8.8.8"},"integrations":{"All":true,"Mixpanel":false,"Salesforce":false},"messageId":"022bb90c-bbac-11e4-8dfc-aa07a5b093db","name":"Dropdown selected","properties":{"variation":"blue"},"receivedAt":"2024-05-17T20:52:05.029Z","sentAt":"2024-05-17T20:52:04.796Z","timestamp":"2024-05-17T20:52:04.796Z","type":"screen","userId":"97980cfea0067","version":"1.1"}
+      }
+  }
+
+  console.log(PageUnstructData);
+  snowplow('trackSelfDescribingEvent', PageUnstructData);
+
+}
+
+
+
+</script>
+
+</div>
+
+
+</div>
+</body>
+</html>
